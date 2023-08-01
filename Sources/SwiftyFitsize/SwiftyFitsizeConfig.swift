@@ -42,13 +42,14 @@ extension SwiftyFitsize {
             public static func getCurrentWindow() -> UIWindow? {
                 if let window = UIApplication.shared.delegate?.window {
                     return window
-                }
-                if #available(iOS 13.0, *) {
-                    if let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first {
-                        return window
+                } else {
+                    if #available(iOS 13.0, *) {
+                        if let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first {
+                            return window
+                        }
                     }
+                    return UIApplication.shared.keyWindow
                 }
-                return UIApplication.shared.keyWindow
             }
             
             /// 是否是iphoneX系列
